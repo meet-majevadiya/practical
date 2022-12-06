@@ -3682,9 +3682,10 @@ header.style-3 .mobile-menu-form input[type="text"] {
 
 .auction-card1 .auction-img img {
   width: 100%;
-  border-radius: 5px 5px 0px 0px;
   -webkit-transition: all 0.65s ease;
+  border-radius: 5px 5px 0px 0px;
   transition: all 0.65s ease;
+  object-fit: contain;
 }
 
 .auction-card1 .auction-img .auction-timer {
@@ -10367,3 +10368,21 @@ live-auction Page
   margin-bottom: 45px;
 }
 /*# sourceMappingURL=style.css.map */
+.service-title {
+  display: block;
+  display: -webkit-box;
+  height: 62px;
+  line-height: 1;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.social-icn {
+  font-size: 35px;
+}
+.auc-img {
+  width: 500px;
+  height: 450px;
+  object-fit: contain;
+}

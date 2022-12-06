@@ -1,21 +1,38 @@
-import React from 'react'
-import AuctionDetailsInfo from './AuctionDetailsInfo'
-import AuctionDetailsTab from './AuctionDetailsTab'
+import axios from "axios";
+import React from "react";
+import { useState } from "react";
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import AuctionDetailsInfo from "./AuctionDetailsInfo";
+import AuctionDetailsTab from "./AuctionDetailsTab";
 
 function AuctionDetailsWrap() {
+  const [singleData, setsingleData] = useState({});
+  const Id = useLocation().state;
+  useEffect(() => {
+    if (Id) {
+      getSingleProduct();
+    }
+  }, []);
+
+  const getSingleProduct = async () => {
+    const response = await axios({
+      method: "get",
+      url: `https://fakestoreapi.com/products/${Id}`,
+    });
+    console.log("response", response.data);
+    setsingleData(response.data);
+  };
   return (
     <>
       <div className="auction-details-section pt-120 pb-120">
-      <img alt="images" src={process.env.PUBLIC_URL + '/images/bg/section-bg.png'} className="img-fluid section-bg-top" />
-        <img alt="images" src={process.env.PUBLIC_URL + '/images/bg/section-bg.png'} className="img-fluid section-bg-bottom" />
-
         <div className="container">
-          <AuctionDetailsInfo/>
-          <AuctionDetailsTab/>
+          <AuctionDetailsInfo data={singleData}/>
+          <AuctionDetailsTab />
         </div>
-      </div>  
+      </div>
     </>
-  )
+  );
 }
 
-export default AuctionDetailsWrap
+export default AuctionDetailsWrap;
